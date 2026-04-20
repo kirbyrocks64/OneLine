@@ -42,7 +42,8 @@ public class AudioManager : MonoBehaviour
         AudioManager[] audioManagers = FindObjectsOfType<AudioManager>();
         AudioManager other = FindOtherManager(audioManagers);
 
-        if (audioManagers.Length > 1 && !PlayingSameTrack(other) && !justAwoken) {
+        if (audioManagers.Length > 1 && !PlayingSameTrack(other) &&
+            !justAwoken) {
             Destroy(gameObject);
         }
 
@@ -59,7 +60,6 @@ public class AudioManager : MonoBehaviour
     private AudioManager FindOtherManager(AudioManager[] audioManagers)
     {
         foreach (AudioManager audioManager in audioManagers) {
-
             if (audioManager != this) {
                 return audioManager;
             }

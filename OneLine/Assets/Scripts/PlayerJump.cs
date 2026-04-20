@@ -107,7 +107,7 @@ public class PlayerJump : MonoBehaviour
             isGrounded = true;
             vertical = false;
             // zero velocity and returning to kinematic
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
             myRb.isKinematic = true; 
             // going back to original position before jump   
             transform.position = new Vector3(overlord.transform.position.x, overlord.transform.position.y);  
@@ -140,7 +140,7 @@ public class PlayerJump : MonoBehaviour
             // same as above
             isGrounded = true;
             myRb.isKinematic = true;  
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
             transform.position = new Vector3(overlord.transform.position.x, overlord.transform.position.y);  
             left = false;
             // re enable gravity for next jump
@@ -171,7 +171,7 @@ public class PlayerJump : MonoBehaviour
             // same as above
             isGrounded = true;
             myRb.isKinematic = true;
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
             transform.position = new Vector3(overlord.transform.position.x, overlord.transform.position.y);  
             right = false;
             // re enable gravity for next jump
@@ -198,7 +198,7 @@ public class PlayerJump : MonoBehaviour
         else if (overlord.transform.position.y - transform.position.y > 20 && !isGrounded && down) {
 
             isGrounded = true;
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
             myRb.isKinematic = true;    
             transform.position = new Vector3(overlord.transform.position.x, overlord.transform.position.y);  
             down = false;
@@ -229,12 +229,12 @@ public class PlayerJump : MonoBehaviour
         // simulating gravity for horizontal jumps
         // 0.196 is 9.8 m/s squared divided by 50 (50 fixed updates per second)
         if (left) {
-            Vector2 newv = new Vector2(myRb.velocity.x + 0.196f, 0);
-            myRb.velocity = newv;
+            Vector2 newv = new Vector2(myRb.linearVelocity.x + 0.196f, 0);
+            myRb.linearVelocity = newv;
         }
         else if (right) {
-            Vector2 newv = new Vector2(myRb.velocity.x - 0.196f, 0);
-            myRb.velocity = newv;
+            Vector2 newv = new Vector2(myRb.linearVelocity.x - 0.196f, 0);
+            myRb.linearVelocity = newv;
         }
     }
 
@@ -249,7 +249,7 @@ public class PlayerJump : MonoBehaviour
 
             // re setting dropping player to grounded
             isGrounded = true;
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
             myRb.isKinematic = true;    
             transform.position = new Vector3(overlord.transform.position.x, overlord.transform.position.y);  
             down = false;
@@ -301,7 +301,7 @@ public class PlayerJump : MonoBehaviour
             if (down) {
                 // returns back to line
                 isGrounded = true;
-                myRb.velocity = Vector2.zero;
+                myRb.linearVelocity = Vector2.zero;
                 myRb.isKinematic = true;    
                 transform.position = new Vector3(overlord.transform.position.x, overlord.transform.position.y);  
                 down = false;
@@ -312,7 +312,7 @@ public class PlayerJump : MonoBehaviour
             }
             // stop momentum if hitting wall while jumping
             else {
-                myRb.velocity = Vector2.zero;
+                myRb.linearVelocity = Vector2.zero;
                 Debug.Log("Wall");
             }
             wall = other.gameObject.GetComponent<Box>();
